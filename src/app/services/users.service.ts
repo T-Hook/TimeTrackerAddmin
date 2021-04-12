@@ -43,7 +43,8 @@ export class UsersService {
      password : set.password,
      email : set.email,
      position : set.position,
-     speciality : set.speciality
+     speciality : set.speciality,
+     active : 'true'
     }, httpOptions);
 
   }
