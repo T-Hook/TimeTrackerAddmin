@@ -1,0 +1,134 @@
+
+<div class="row">
+
+    <div class="card ">
+
+      <div class="card-header ">
+  <h3> Routes </h3>
+<hr>
+
+  <ng-template #content let-modal>
+    <div class="modal-header">
+      <h4 class="modal-title" id="modal-basic-title">ADD new route</h4>
+      <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body">
+      <form  class="form-horizontal" name="route" (ngSubmit)="addroute()" novalidate>
+        <div class="form-group">
+          <input type="text" class="form-control" id="name" required [(ngModel)]="route.name" name="name" placeholder="route name">
+        </div>
+        <div class="form-group">
+          <input type="text" class="form-control" id="url" required [(ngModel)]="route.url" name="url" placeholder="URL your path">
+        </div>
+        <div class="form-group">
+          <input type="text" class="form-control" id="method" required [(ngModel)]="route.method" name="method" placeholder="method : GET/POST/PUT/DELETE/PATCH">
+        </div>
+        <div class="form-group">
+          <input type="text" class="form-control" id="active" required [(ngModel)]="route.active" name="active" value="true" placeholder="true">
+        </div>
+        <div class="form-group">
+          <input type="text" class="form-control" id="description" required [(ngModel)]="route.description" name="description"  placeholder="method : method\n path : /api/path">
+        </div>
+        <div class="form-group">
+          <input type="text" class="form-control" id="__v" required [(ngModel)]="route.__v" name="__v"  value="0" hidden>
+        </div>
+
+    <div class="modal-footer">
+      <button type="button" class="btn btn-outline-primary" (click)="modal.close('Save click')">Dismiss</button>
+
+      <button  type="submit" class="btn btn-outline-primary">ADD</button>
+    </div>
+  </form>
+</div>
+  </ng-template>
+  <div class="update ml-auto mr-auto" style="text-align:center">
+  <button class="btn btn-lg btn-outline-primary btn-round" (click)="open(content)"><i class="nc-icon  nc-simple-add"></i> ADD new route</button>
+</div>
+
+
+
+
+
+
+
+
+
+  <form>
+    <div class="input-group no-border">
+
+      <input class="form-control" type="text" name="searchTerm" placeholder="search for path..."
+      [(ngModel)]="searchTerm" (input)="search($event.target.value)" >
+      <div class="input-group-append">
+        <div class="input-group-text">
+          <i class="nc-icon nc-zoom-split"></i>
+        </div>
+      </div>
+    </div>
+  </form>
+      </div>
+
+
+      <div class="card-body ">
+          <div class="table-responsive">
+            <table class="table">
+              <thead class=" text-primary">
+                <th scope="col" hidden>#</th>
+                <th>
+               Name
+                </th>
+
+                <th>
+                URL
+                </th>
+                <th>
+                Method
+                </th>
+                <th>
+                  Active
+                  </th>
+                  <th>
+                    Description
+                    </th>
+                <th style="text-align:center">
+                --
+                </th>
+              </thead>
+              <tbody>
+                <tr  *ngFor="let route of routes | searchFilter: searchTerm; index as i">
+                  <td scope="row" hidden>{{ i + 1 }}</td>
+                  <td>
+                 {{route.name}}
+                  </td>
+                  <td>
+                    {{route.url}}
+                  </td>
+                  <td>
+                    {{route.method}}
+                  </td >
+                  <td>
+                    {{route.active}}
+                  </td >
+                  <td>
+                    {{route.description}}
+                  </td >
+
+                  <td style="text-align:center">
+                    <i (click)="deleteroute(route._id)"    class="nc-icon nc-basket"></i>
+    </td>
+                </tr>
+
+              </tbody>
+            </table>
+        </div>
+
+
+      </div>
+
+
+
+</div>
+</div>
+
+

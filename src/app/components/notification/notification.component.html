@@ -1,0 +1,104 @@
+
+
+  <div class="col-md-12">
+    <div class="card ">
+      <div class="card-header ">
+        <h3> Notifications </h3>
+
+      </div>
+      <div class="card-body ">
+
+
+
+
+
+          <form  (ngSubmit)="onSub()"  [formGroup]="fo">
+
+
+
+            <div class="form-group">
+              <label>TO </label>
+  <select class="form-control" formControlName="idUser" >
+    <option value="">---Please select a user---</option>
+         <option *ngFor="let user of users" value="{{user._id}}" >
+           {{user.email}}
+         </option>
+   </select>
+</div>
+  <div class="form-group">
+    <label> Message </label>
+    <textarea type="text" name="data" formControlName="data" rows="5" cols="2" class="form-control" placeholder="description" >
+</textarea>
+    </div>
+    <div class="form-group">
+      <input type="text" name="date" formControlName="date" class="form-control" hidden/>
+      </div>
+
+
+            <div class="row">
+              <div class="update ml-auto mr-auto">
+                <button type="submit" class="btn  btn-success btn-round btn-lg"> <i   class="nc-icon nc-send"></i> send notification</button>
+              </div>
+            </div>
+          </form>
+
+
+        </div>
+        </div>
+
+ <div class="col-md-12">
+    <div class="card ">
+      <div class="card-header ">
+  <h3> Notifications sent </h3>
+  <div class="card-category"> ... </div>
+      </div>
+      <div class="card-body ">
+        <div id="map" class="map">
+          <div class="table-responsive">
+            <table class="table">
+              <thead class=" text-primary">
+                <th>
+                  Message
+                </th>
+
+                <th>
+                  Destination
+                </th>
+                <th>
+                Date
+                </th>
+                <th style="text-align:center">
+                Remove
+                </th>
+              </thead>
+              <tbody>
+                <tr  *ngFor="let notification of notifications">
+
+                  <td>
+                   {{ notification.data}}
+                  </td>
+                  <td>
+                    {{ notification.idUser.email}}
+                  </td>
+                  <td>
+                    {{ notification.date | date: 'dd/MM/yyyy HH:mm'}}
+                  </td>
+
+                  <td style="text-align:center">
+                    <i (click)="delete(notification._id)"  class="nc-icon nc-simple-remove"></i>
+    </td>
+                </tr>
+
+              </tbody>
+            </table>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+
+
+
+
+</div>

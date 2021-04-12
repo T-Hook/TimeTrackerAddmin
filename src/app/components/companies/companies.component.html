@@ -1,0 +1,117 @@
+
+<div class="row">
+  <div class="col-md-12">
+    <div class="card ">
+      <div class="card-header ">
+  <h3> Add company </h3>
+      </div>
+      <div class="card-body ">
+
+ <form class="form-horizontal" name="form" (ngSubmit)="onSubmit()" #f="ngForm" novalidate>
+ <div class="form-group"> <span class="col-md-1 col-md-offset-2 text-center"></span>
+ <input type="text" name="name"  [(ngModel)]="form.name" required #name="ngModel" placeholder="Name company" class="form-control"></div>
+
+
+ <div class="form-group"> <span class="col-md-1 col-md-offset-2 text-center"></span>
+  <input  type="text" name="address"  [(ngModel)]="form.address" required #address="ngModel" placeholder="Address company" class="form-control"></div>
+
+  <div class="form-group"> <span class="col-md-1 col-md-offset-2 text-center"></span>
+    <input  type="text" name="region"  [(ngModel)]="form.region" required #phone="ngModel" placeholder="Region" class="form-control"></div>
+
+
+ <div class="form-group"> <span class="col-md-1 col-md-offset-2 text-center"></span>
+  <textarea  type="texta" name="description"  rows="5" cols="33"  [(ngModel)]="form.description" required #description="ngModel" placeholder="description" class="form-control"></textarea></div>
+
+
+
+ <div class="form-group"> <span class="col-md-1 col-md-offset-2 text-center"></span>
+  <input  type="text" name="phone"  [(ngModel)]="form.phone" required #phone="ngModel" placeholder="Phone number" class="form-control"></div>
+
+
+
+  <div class="form-group"> <span class="col-md-1 col-md-offset-2 text-center"></span>
+    <input  type="text" name="website"  [(ngModel)]="form.website" required #phone="ngModel" placeholder="Website" class="form-control"></div>
+
+
+
+<div class="form-group">
+<div class="col-md-12 text-center">
+ <button type="submit" class="btn btn-primary btn-lg"  routerLink="/companies" >ADD Company</button> </div> </div>
+  </form>
+
+
+        </div></div>
+        </div>
+  <div class="col-md-12">
+    <div class="card ">
+      <div class="card-header ">
+  <h3> About Company </h3>
+      </div>
+      <div class="card-body ">
+        <div id="map" class="map">
+          <div class="table-responsive">
+            <table class="table">
+              <thead class=" text-primary">
+                <th>
+                  Name of company
+                </th>
+
+                <th>
+                  address
+                </th>
+                <th>
+                  region
+                </th>
+                <th>
+                  description
+                </th>
+                <th>
+                phone
+                </th>
+                <th>
+                  website
+                </th>
+                <th style="text-align:center">
+                details
+                </th>
+              </thead>
+              <tbody>
+                <tr  *ngFor="let company of companies">
+
+                  <td>
+                   {{ company.name}}
+                  </td>
+                  <td>
+                    {{ company.address}}
+
+                  </td>
+                  <td>
+                    {{ company.region}}
+                  </td >
+                  <td>
+                    {{ company.description}}
+                  </td>
+                  <td>
+                    {{ company.phone}}
+                  </td>
+                  <td>
+                    {{ company.website}}
+                  </td>
+                  <td style="text-align:center">
+                    <i (click)="details(company._id)"  class="nc-icon nc-tap-01"></i>
+    </td>
+                </tr>
+
+              </tbody>
+            </table>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+
+
+</div>
+
+

@@ -1,0 +1,259 @@
+<div class="row">
+  <div class="col-md-12">
+    <div class="card ">
+      <div class="card-header ">
+   <h3> update project</h3>
+      </div>
+      <div class="card-body ">
+        <form  class="form-horizontal" name="company" (ngSubmit)="update()" novalidate>
+          <div class="form-group">
+            <input type="text" class="form-control" id="name" required [(ngModel)]="project.name" name="name">
+          </div>
+          <div class="form-group">
+            <input type="text" class="form-control" id="description" required [(ngModel)]="project.description" name="description">
+          </div>
+          <div class="form-group">
+            <input type="text" class="form-control" id="data" required [(ngModel)]="project.data" name="data">
+          </div>
+
+          <div class="form-group">
+            <div class="col-md-12 text-center">
+          <button type="submit" class="btn btn-success btn-lg"  >UPDATE</button> </div> </div>
+        </form>
+
+    </div>
+
+  </div>
+
+  <div class="col-md-12">
+    <div class="card ">
+      <div class="card-header ">
+        <h3> Add user in project {{project.name}} </h3>
+      </div>
+
+      <div
+      class="alert alert-danger"
+      role="alert"
+      *ngIf="fo.submitted && isFailed">
+      {{ Message }}
+    </div>
+      <div class="card-body ">
+
+          <form  (ngSubmit)="onSub()"  [formGroup]="fo">
+
+
+                <div class="form-group">
+                  <label>project</label>
+
+ <input type="text" formControlName="idProject" class="form-control" value="{{project.name}}">
+
+            </div>
+
+            <div class="form-group">
+              <label>User </label>
+         <select class="form-control" formControlName="idUser" >
+          <option value="">---Please select a user---</option>
+         <option *ngFor="let user of users" value="{{user._id}}" >
+           {{user.email}}
+          </option>
+          </select>
+          </div>
+
+
+       <div class="form-group">
+        <label>Access control list </label>
+        <div class="input-group mb-2 mr-sm-2 mb-sm-1">
+          <div class="input-group-prepend" style="width: 4rem"></div>
+          <div *ngFor="let data of Data; let i=index">
+
+              <input  type="checkbox" value="{{data.value}}" id="acl"
+                name="acl"
+                 (change)="onCheckboxChange($event)" />
+              {{data.name}}
+
+          </div>
+         </div>
+
+         </div>
+
+       <div class="form-group">
+       <label>DATA </label>
+      <input  type="text" name="data" formControlName="data"  class="form-control" >
+      </div>
+
+
+            <div class="row">
+              <div class="update ml-auto mr-auto">
+                <button type="submit" class="btn btn-primary btn-round btn-lg">ADD user role in project</button>
+              </div>
+            </div>
+          </form>
+
+      </div></div>
+      </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <div class="col-md-12">
+    <div class="card ">
+      <div class="card-header ">
+   <h3> Add task in project {{project.name}}</h3>
+      </div>
+      <div class="card-body ">
+        <form  (ngSubmit)="onSubtask()"  [formGroup]="ft">
+
+          <div class="form-group">
+            <label>Name of task</label>
+<input type="text" formControlName="name" class="form-control" ></div>
+
+<div class="form-group">
+  <label>Description</label>
+<input type="text" formControlName="description" class="form-control" ></div>
+<div class="form-group">
+<input type="text" formControlName="date" class="form-control" hidden></div>
+
+<div class="form-group">
+  <label>Type</label>
+<input type="text" formControlName="type" class="form-control" ></div>
+ <div class="form-group">
+  <label>project</label>
+
+<input type="text" formControlName="idProject" class="form-control" value="{{project.name}}">
+
+      </div>
+
+      <div class="form-group">
+        <label>User </label>
+   <select class="form-control" formControlName="idUser" >
+    <option value="">---Please select a user---</option>
+   <option *ngFor="let user of users" value="{{user._id}}" >
+     {{user.email}}
+    </option>
+    </select>
+    </div>
+    <div class="form-group">
+      <label>Company </label>
+ <select class="form-control" formControlName="idCompany" >
+  <option value="">---Please select a company---</option>
+ <option *ngFor="let company of companies" value="{{company._id}}" >
+   {{company.name}}
+  </option>
+  </select>
+  </div>
+
+
+
+      <div class="row">
+        <div class="update ml-auto mr-auto">
+          <button type="submit" class="btn btn-primary btn-round btn-lg">ADD task</button>
+        </div>
+      </div>
+    </form>
+
+    </div>
+    </div>
+
+    <div class="col-md-12">
+      <div class="card ">
+        <div class="card-header ">
+    <h3> List of Tasks </h3>
+        </div>
+        <div class="card-body ">
+          <div id="map" class="map">
+            <div class="table-responsive">
+              <table class="table">
+                <thead class=" text-primary">
+                  <th>
+                    task name
+                  </th>
+
+                  <th>
+                    Description
+                  </th>
+                  <th>
+                    Type
+                  </th>
+                  <th>
+                    Date
+                  </th>
+                  <th>
+                    Project
+                  </th>
+                  <th>
+                    User
+                  </th>
+                  <th style="text-align:center">
+                    Delete
+                    </th>
+                </thead>
+                <tbody>
+                  <tr  *ngFor="let task of tasks">
+
+                    <td>
+                     {{ task.name}}
+                    </td>
+                    <td>
+                      {{ task.description}}
+
+                    </td>
+                    <td>
+                      {{ task.type}}
+                    </td >
+                    <td>
+                      {{ task.date  | date: 'dd/MM/yyyy'}}
+                    </td >
+                    <td>
+                      {{ task.idProject.name}}
+                    </td >
+                    <td>
+                      {{ task.idUser.email}}
+                    </td >
+
+
+
+      <td style="text-align:center">
+
+
+        <i (click)="deletetask(task._id)"  class="nc-icon nc-basket"></i>
+      </td>
+                  </tr>
+
+                </tbody>
+              </table>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+
+
+  </div>
+
+  </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,137 @@
+
+<div class="row">
+
+  <div class="col-md-12">
+
+    <div class="card ">
+      <div class="card-header">
+  <h3> Permissions </h3>
+  <hr>
+
+  <ng-template #content let-modal>
+    <div class="modal-header">
+      <h4 class="modal-title" id="modal-basic-title">ADD route to permission</h4>
+      <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body">
+      <form  (ngSubmit)="onSubper()"  [formGroup]="per">
+
+    <div class="form-group">
+      <label>Permission </label>
+ <select class="form-control" formControlName="idPermission" >
+  <option value="">---Please select a permission---</option>
+ <option *ngFor="let per of permissions" value="{{per._id}}" >
+   {{per.name}}
+  </option>
+  </select>
+  </div>
+
+    <div class="form-group">
+      <label>Route</label>
+ <select class="form-control" formControlName="idRoute" >
+  <option value="">---Please select a route---</option>
+ <option *ngFor="let route of routes" value="{{route._id}}" >
+   {{route.name}}
+  </option>
+  </select>
+  </div>
+
+    <div class="modal-footer">
+      <button type="button" class="btn btn-outline-primary" (click)="modal.close('Save click')">Dismiss</button>
+
+      <button  type="submit" class="btn btn-outline-primary">ADD</button>
+    </div>
+  </form>
+</div>
+  </ng-template>
+
+
+
+
+<ng-template #cont let-modal>
+  <div class="modal-header">
+    <h4 class="modal-title" id="modal-basic-title">ADD new permission</h4>
+    <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+      <form  class="form-horizontal" name="permission" (ngSubmit)="addpermission()" novalidate>
+        <div class="form-group">
+          <input type="text" class="form-control" id="name" required [(ngModel)]="permission.name" name="name" placeholder="Permission name">
+        </div>
+        <div class="form-group">
+          <textarea type="text" class="form-control" cols="5" rows="5" id="description" required [(ngModel)]="permission.description" name="url" placeholder="Description"></textarea>
+        </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-outline-primary" (click)="modal.close('Save click')">Dismiss</button>
+
+    <button  type="submit" class="btn btn-outline-primary">ADD</button>
+  </div>
+</form>
+</div>
+</ng-template>
+
+
+
+
+<div class="update ml-auto mr-auto" style="text-align:center">
+  <button class="btn  btn-outline-primary btn-round" (click)="open(content)"><i class="nc-icon  nc-simple-add"></i> ADD route to permission</button>
+  <button class="btn  btn-outline-primary btn-round" (click)="open(cont)"><i class="nc-icon  nc-simple-add"></i> ADD new permission</button>
+
+</div>
+
+
+      </div>
+      <div class="card-body ">
+    <div class="table-responsive">
+      <table class="table">
+        <thead class=" text-primary">
+          <th>
+         Name
+          </th>
+
+          <th>
+       Routes associated
+          </th>
+          <th>
+        Description
+          </th>
+
+          <th>
+            Remove
+              </th>
+        </thead>
+
+        <tbody>
+          <tr *ngFor="let per of permissions" >
+
+            <td  style="vertical-align:top;background-color:whitesmoke">
+              {{per.name}}
+            </td>
+            <td  >
+              <tr *ngFor="let perm of per.routes ; let i = index">
+                <td>     {{perm.description}}</td>
+              </tr>
+            </td>
+            <td  style="background-color:whitesmoke">
+              {{per.description}}
+            </td >
+            <td style="text-align:center;vertical-align:top">
+              <i (click)="deleteper(per._id)"  class="nc-icon nc-basket"></i>
+            </td>
+          </tr>
+
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+
+</div>
+</div>
+
+
+

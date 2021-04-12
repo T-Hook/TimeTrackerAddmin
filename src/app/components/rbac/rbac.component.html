@@ -1,0 +1,150 @@
+
+<div class="row">
+
+    <div class="card" style="width: 80rem;">
+      <div class="card-header ">
+  <h3> Role Based Acces Control </h3>
+<hr>
+<p style="text-align: right;">
+
+    <button type="submit" class="btn btn-primary btn-round " [routerLink]="['/route']" routerLinkActive="router-link-active" ><i class="nc-icon  nc-align-left-2"></i> Routes</button>
+
+    <button type="submit" class="btn btn-primary btn-round " [routerLink]="['/permissions']" routerLinkActive="router-link-active" > <i class="nc-icon  nc-align-left-2"></i> Permissions</button>
+</p>
+
+
+
+  <ng-template #content let-modal>
+    <div class="modal-header">
+      <h4 class="modal-title" id="modal-basic-title">ADD permission to RBAC</h4>
+      <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body">
+      <form  (ngSubmit)="onSubrbac()"  [formGroup]="rbacc">
+        <div class="form-group">
+
+     <select class="form-control" formControlName="idRbac" >
+      <option value="">---Please select RBAC---</option>
+     <option *ngFor="let rbac of rbacs" value="{{rbac._id}}" >
+       {{rbac.name}}
+      </option>
+      </select>
+      </div>
+
+    <div class="form-group">
+ <select class="form-control" formControlName="idPermission" >
+  <option value="">---Please select a permission---</option>
+ <option *ngFor="let per of permissions" value="{{per._id}}" >
+   {{per.name}}
+  </option>
+  </select>
+  </div>
+
+
+
+    <div class="modal-footer">
+      <button type="button" class="btn btn-outline-primary" (click)="modal.close('Save click')">Dismiss</button>
+
+      <button  type="submit" class="btn btn-outline-primary">ADD</button>
+    </div>
+  </form>
+</div>
+  </ng-template>
+
+
+
+
+<ng-template #cont let-modal>
+  <div class="modal-header">
+    <h4 class="modal-title" id="modal-basic-title">ADD new role based acces control</h4>
+    <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+      <form  class="form-horizontal" name="rbac" (ngSubmit)="addrbac()" novalidate>
+        <div class="form-group">
+          <input type="text" class="form-control" id="name" required [(ngModel)]="rbac.name" name="name" placeholder="RBAC name">
+        </div>
+        <div class="form-group">
+          <textarea type="text" class="form-control" cols="5" rows="5" id="description" required [(ngModel)]="rbac.description" name="description" placeholder="Description"></textarea>
+        </div>
+        <div class="form-group">
+          <input type="text" class="form-control" id="group" required [(ngModel)]="rbac.group" name="group" placeholder="GROUP">
+        </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-outline-primary" (click)="modal.close('Save click')">Dismiss</button>
+
+    <button  type="submit" class="btn btn-outline-primary">ADD</button>
+  </div>
+</form>
+</div>
+</ng-template>
+
+
+
+
+<div class="update ml-auto mr-auto" style="text-align:center">
+  <button class="btn  btn-outline-primary btn-round" (click)="open(content)"><i class="nc-icon  nc-simple-add"></i> ADD permission to rbac</button>
+  <button class="btn  btn-outline-primary btn-round" (click)="open(cont)"><i class="nc-icon  nc-simple-add"></i> ADD new RBAC </button>
+
+</div>
+
+      </div>
+      <div class="card-body ">
+
+          <div class="table-responsive">
+            <table class="table">
+              <thead class=" text-primary">
+                <th >
+                RBAC name
+                </th>
+                <th >
+                  Group
+                  </th>
+                <th>
+            Permissions with routes associated
+                </th>
+
+
+              </thead>
+              <tbody>
+                <tr  *ngFor="let rbac of rbacs">
+
+                  <td style="vertical-align:top;background-color:whitesmoke">
+                 {{rbac.name}}
+                  </td>
+                  <td style="vertical-align:top">
+                    {{rbac.group}}
+                     </td>
+                  <td>
+                 <tr *ngFor="let r of rbac.permissions">
+                   <td>  Permission  :  {{r.name}}
+                    <tr *ngFor="let routes of r.routes">
+                      <td>   {{routes.name}} </td>
+                     </tr>
+                   </td>
+
+                 </tr>
+                  </td>
+                </tr>
+
+              </tbody>
+            </table>
+        </div>
+        <br>
+        <br>
+        <br>
+        <br>
+
+      </div>
+
+
+
+
+</div>
+</div>
+
+
