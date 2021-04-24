@@ -1,0 +1,337 @@
+
+<div class="row">
+  <div class="col-md-12">
+    <div class="card ">
+      <div class="card-header ">
+
+
+  <h3> Add new plan </h3>
+
+
+
+  <ng-template #content let-modal>
+    <div class="modal-header">
+      <h4 class="modal-title" id="modal-basic-title">ADD rule to plan</h4>
+      <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body">
+      <form  (ngSubmit)="onSub()"  [formGroup]="plan">
+        <div class="form-group">
+
+     <select class="form-control" formControlName="idplan" >
+      <option value="">---Please select plan---</option>
+     <option *ngFor="let plan of plans" value="{{plan._id}}" >
+       {{plan.name}}
+      </option>
+      </select>
+      </div>
+
+    <div class="form-group">
+ <select class="form-control" formControlName="idrule" >
+  <option value="">---Please select a rule---</option>
+ <option *ngFor="let rule of rules" value="{{rule._id}}" >
+   {{rule.name}}
+  </option>
+  </select>
+  </div>
+
+
+
+    <div class="modal-footer">
+      <button type="button" class="btn btn-outline-primary" (click)="modal.close('Save click')">Dismiss</button>
+
+      <button  type="submit" class="btn btn-outline-primary">ADD</button>
+    </div>
+  </form>
+</div>
+  </ng-template>
+
+<div class="update ml-auto mr-auto" style="text-align:center">
+  <button class="btn  btn-outline-primary btn-round" (click)="open(content)"><i class="nc-icon  nc-simple-add"></i> ADD rule to plan</button>
+
+</div>
+      </div>
+      <div class="card-body ">
+ <form class="form-horizontal" name="form" (ngSubmit)="onSubmit()" #f="ngForm" novalidate>
+
+ <div class="form-group"> <span class="col-md-1 col-md-offset-2 text-center"></span>
+ <input type="text" name="name"  [(ngModel)]="form.name" required #name="ngModel" placeholder="Name plan" class="form-control"></div>
+
+ <div class="form-group"> <span class="col-md-1 col-md-offset-2 text-center"></span>
+  <textarea   name="description"  rows="5" cols="33"  [(ngModel)]="form.description" required #description="ngModel" placeholder="description" class="form-control"></textarea></div>
+
+  <div class="form-group"> <span class="col-md-1 col-md-offset-2 text-center"></span>
+    <input   name="expireIn" type="date"  [(ngModel)]="form.expireIn" required  class="form-control"></div>
+
+  <div class="form-group"> <span class="col-md-1 col-md-offset-2 text-center"></span>
+    <textarea   name="data"  rows="5" cols="33"  [(ngModel)]="form.data" required #data="ngModel" placeholder="DATA" class="form-control"></textarea></div>
+
+    <div class="form-group"> <span class="col-md-1 col-md-offset-2 text-center"></span>
+      <input type="text" name="type"  [(ngModel)]="form.type" placeholder="type" class="form-control"></div>
+      <div class="form-group"> <span class="col-md-1 col-md-offset-2 text-center"></span>
+        <input type="text" name="price"  [(ngModel)]="form.price" placeholder="price" required  class="form-control"></div>
+
+
+<div class="form-group">
+<div class="col-md-12 text-center">
+ <button type="submit" class="btn btn-primary btn-lg" >ADD new plan</button> </div> </div>
+  </form>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        </div></div>
+        </div>
+    <div class="col-md-12">
+      <div class="card ">
+        <div class="card-header ">
+    <h3> List of plan </h3>
+        </div>
+        <div class="card-body ">
+          <div id="map" class="map">
+            <div class="table-responsive">
+              <table class="table">
+                <thead class=" text-primary">
+                  <th>
+                   plan name
+                  </th>
+                  <th>
+                    Description
+                  </th>
+                  <th>
+                    rules
+                  </th>
+                  <th>
+                    ExpireIn
+                  </th>
+                  <th>
+                    DATA
+                  </th>
+                  <th >
+                  type
+                  </th>
+                  <th>
+                    price
+                    </th>
+
+
+                  <th style="text-align:center">
+                    Delete
+                    </th>
+                </thead>
+                <tbody>
+                  <tr  *ngFor="let plan of plans">
+
+                    <td>
+                     {{ plan.name}}
+                    </td>
+                    <td>
+                      {{ plan.description}}
+
+                    </td>
+                    <td>
+<tr  *ngFor="let rules of plan.rules">
+  <td>
+    {{ rules.name}}
+  </td>
+</tr>
+                    </td >
+                    <td>
+                      {{ plan.expireIn}}
+                    </td>
+                    <td>
+                      {{ plan.data}}
+                    </td>
+                    <td>
+                      {{ plan.type}}
+                    </td>
+                    <td>
+                      {{ plan.price}}
+                    </td>
+
+      <td style="text-align:center">
+
+
+        <i   (click)="delete(plan._id)" class="nc-icon nc-basket"></i>
+      </td>
+                  </tr>
+
+                </tbody>
+              </table>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+
+    <div class="card ">
+      <div class="card-header ">
+
+  <h3> Rules </h3>
+
+      </div>
+      <div class="card-body ">
+
+
+
+
+
+        <ng-template #c let-modal>
+          <div class="modal-header">
+            <h4 class="modal-title" id="modal-basic-title">ADD new rule</h4>
+            <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+
+            <form  class="form-horizontal" name="rule" (ngSubmit)="addrule()" novalidate>
+              <div class="form-group">
+                <input type="text" class="form-control" id="name" required [(ngModel)]="rule.name" name="name" placeholder="Name rule">
+              </div>
+              <div class="form-group">
+                <input type="text" class="form-control" id="type" required [(ngModel)]="rule.type" name="type" placeholder="Type">
+              </div>
+              <div class="form-group">
+                <input type="text" class="form-control" id="description" required [(ngModel)]="rule.description" name="Description" placeholder="Description">
+              </div>
+              <div class="form-group">
+                <input type="text" class="form-control" id="value" required [(ngModel)]="rule.value" name="value" placeholder="Value">
+              </div>
+
+          <div class="modal-footer">
+            <button type="button" class="btn btn-outline-primary" (click)="modal.close('Save click')">Dismiss</button>
+
+            <button  type="submit" class="btn btn-outline-primary">ADD</button>
+          </div>
+          </form>
+      </div>
+        </ng-template>
+
+        <ng-template #co let-modal>
+          <div class="modal-header">
+            <h4 class="modal-title" id="modal-basic-title">list of rules</h4>
+            <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+
+            <table class="table">
+              <thead class=" text-primary">
+                <th>
+                  Name
+                </th>
+
+                <th>
+                  Type
+                </th>
+                <th>
+                  Description
+                </th>
+                <th>
+                  Value
+                </th>
+
+                <th style="text-align:center">
+                Remove
+                </th>
+              </thead>
+              <tbody>
+                <tr *ngFor="let rule of rules" >
+                  <td  >
+                    {{rule.name}}
+                  </td>
+                  <td>
+                    {{rule.type}}
+                  </td>
+                  <td>
+                    {{rule.description}}
+                  </td>
+                  <td>
+                    {{rule.value}}
+                  </td>
+                  <td style="text-align:center">
+
+                    <i (click)="deleterule(rule._id)"  class="nc-icon nc-basket"></i>
+                  </td>
+
+                </tr>
+
+              </tbody>
+            </table>
+
+          <div class="modal-footer">
+            <button type="button" class="btn btn-outline-primary" (click)="modal.close('Save click')">Dismiss</button>
+
+
+          </div>
+
+      </div>
+        </ng-template>
+      <div class="update ml-auto mr-auto" style="text-align:center">
+        <button class="btn  btn-outline-primary btn-round" (click)="open(c)"><i class="nc-icon  nc-simple-add"></i> ADD new rule</button>
+        <button class="btn  btn-outline-primary btn-round" (click)="open(co)"><i class="nc-icon  nc-simple-add"></i> Show all rules</button>
+
+      </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        </div></div>
+
+
+
+
+
+
+
+
+
+  </div>
+
+

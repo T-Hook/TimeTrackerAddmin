@@ -91,11 +91,74 @@
 
       </div></div>
       </div>
-</div>
+  </div>
 
 
 
 
+
+  <div class="col-md-12">
+    <div class="card ">
+      <div class="card-header ">
+        <h3> List users in project {{project.name}} </h3>
+      </div>
+      <div class="card-body ">
+
+  <div class="table-responsive">
+              <table class="table">
+                <thead class=" text-primary">
+                  <th>
+                    User
+                  </th>
+
+                  <th>
+                    Acces control list
+                  </th>
+                  <th>
+                    Project description
+                  </th>
+                  <th>
+                    Data
+                  </th>
+
+                  <th style="text-align:center">
+                    Delete
+                    </th>
+                </thead>
+                <tbody>
+                  <tr  *ngFor="let p of proj">
+
+                    <td>
+                     {{ p.idUser.email}}
+                    </td>
+                    <td>
+                      {{ p.acl}}
+
+                    </td>
+                    <td>
+                      {{ p.idProject.description}}
+
+                    </td>
+                    <td>
+                      {{ p.data}}
+                    </td >
+
+
+
+
+      <td style="text-align:center">
+
+
+        <i  class="nc-icon nc-basket"></i>
+      </td>
+                  </tr>
+
+                </tbody>
+              </table>
+          </div>
+
+      </div></div>
+      </div>
 
 
 
@@ -115,21 +178,21 @@
 
           <div class="form-group">
             <label>Name of task</label>
-<input type="text" formControlName="name" class="form-control" ></div>
+ <input type="text" formControlName="name" class="form-control" ></div>
 
-<div class="form-group">
+ <div class="form-group">
   <label>Description</label>
-<input type="text" formControlName="description" class="form-control" ></div>
-<div class="form-group">
-<input type="text" formControlName="date" class="form-control" hidden></div>
+ <input type="text" formControlName="description" class="form-control" ></div>
+ <div class="form-group">
+ <input type="text" formControlName="date" class="form-control" hidden></div>
 
-<div class="form-group">
+ <div class="form-group">
   <label>Type</label>
-<input type="text" formControlName="type" class="form-control" ></div>
+ <input type="text" formControlName="type" class="form-control" ></div>
  <div class="form-group">
   <label>project</label>
 
-<input type="text" formControlName="idProject" class="form-control" value="{{project.name}}">
+ <input type="text" formControlName="idProject" class="form-control" value="{{project.name}}">
 
       </div>
 
@@ -167,7 +230,7 @@
     <div class="col-md-12">
       <div class="card ">
         <div class="card-header ">
-    <h3> List of Tasks </h3>
+    <h3> List of Tasks in project {{project.name}} </h3>
         </div>
         <div class="card-body ">
           <div id="map" class="map">
@@ -239,9 +302,231 @@
 
 
 
-  </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <div class="col-md-12">
+      <div class="card ">
+        <div class="card-header ">
+    <h3> Add new sprint </h3>
+        </div>
+        <div class="card-body ">
+
+
+          <form class="form-horizontal" name="sprint" (ngSubmit)="onsubsprint()" novalidate>
+
+            <div class="form-group"> <span class="col-md-1 col-md-offset-2 text-center"></span>
+            <input type="text" name="name"  [(ngModel)]="sprint.name" required #name="ngModel" placeholder="Name sprint" class="form-control"></div>
+            <div class="form-group"> <span class="col-md-1 col-md-offset-2 text-center"></span>
+             <textarea type="text" name="description" cols="5" rows="5" [(ngModel)]="sprint.description" required  placeholder="description" class="form-control"></textarea></div>
+             <div class="form-group"> <span class="col-md-1 col-md-offset-2 text-center"></span>
+               <input type="text" name="type"  [(ngModel)]="sprint.type" required  placeholder="type" class="form-control"></div>
+               <div class="form-group"> <span class="col-md-1 col-md-offset-2 text-center"></span>
+                 <input type="text" name="value"  [(ngModel)]="sprint.value" required  placeholder="value" class="form-control"></div>
+
+                 <div class="form-group"> <span class="col-md-1 col-md-offset-2 text-center"></span>
+                  <label>Date Start</label>
+                   <input type="date" name="dateStart"  [(ngModel)]="sprint.dateStart" required  class="form-control"></div>
+                   <div class="form-group"> <span class="col-md-1 col-md-offset-2 text-center"></span>
+                    <label>Date End</label>
+                     <input type="date" name="dateEnd"  [(ngModel)]="sprint.dateEnd" required  class="form-control"></div>
+
+                     <div class="form-group"> <span class="col-md-1 col-md-offset-2 text-center"></span>
+                       <input type="text" name="priority"  [(ngModel)]="sprint.priority" required  class="form-control" placeholder="priority"></div>
+                       <div class="form-group"> <span class="col-md-1 col-md-offset-2 text-center"></span>
+                         <input type="text" name="status"  [(ngModel)]="sprint.status" required  placeholder="status" class="form-control" ></div>
+
+
+                         <div class="form-group">
+           <select class="form-control" [(ngModel)]="sprint.idUser" name="idUser" class="form-control">
+           <option class="dropdown-item" disabled selected value="undefined">User</option>
+            <option *ngFor="let user of users" value="{{user._id}}" >
+              {{user.email}}
+            </option>
+           </select>
+          </div>
+          <div class="form-group">
+           <select class="form-control" [(ngModel)]="sprint.idTask" name="idTask" class="form-control">
+             <option class="dropdown-item" disabled selected value="undefined">Task</option>
+              <option *ngFor="let task of tasks" value="{{task._id}}" >
+                {{task.name}} :  {{task.description}}
+              </option>
+             </select>
+             </div>
+             <div class="form-group"> <span class="col-md-1 col-md-offset-2 text-center"></span>
+               <input type="text" name="idProject"  [(ngModel)]="project.name" required  value="{{project._id}}" class="form-control"></div>
+
+
+
+
+
+
+           <div class="form-group">
+           <div class="col-md-12 text-center">
+            <button type="submit" class="btn btn-primary btn-lg" >ADD new sprint</button> </div> </div>
+
+          </form>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
   </div>
+
+</div>
+
+
+
+
+        <div class="card ">
+          <div class="card-header ">
+       <h3> List of sprints in project {{project.name}}</h3>
+          </div>
+          <div class="card-body ">
+            <div id="map" class="map">
+
+              <div class="table-responsive">
+                <table class="table">
+                  <thead class=" text-primary">
+                    <th>
+                    name
+                    </th>
+
+                    <th>
+                      Description
+                    </th>
+                    <th>
+                     User
+                    </th>
+                    <th>
+                    Task
+                    </th>
+                    <th>
+                      type
+                    </th>
+                    <th >
+                      value
+                    </th>
+                    <th >
+                      date start
+                    </th>
+                    <th >
+                      date end
+                    </th>
+                    <th >
+                      priority
+                    </th>
+                    <th >
+                     status
+                    </th>
+
+                    <th style="text-align:center">
+                      Delete
+                      </th>
+                  </thead>
+                  <tbody>
+                    <tr *ngFor="let sprint of sprints">
+
+                      <td>
+                       {{sprint.name}}
+                      </td>
+                      <td>
+                        {{sprint.description}}
+                      </td>
+                      <td>
+                        {{sprint.idUser.email}}
+                      </td>
+                      <td>
+                        {{sprint.idTask.description}}
+                      </td>
+
+                      <td>
+                        {{sprint.type}}
+                      </td >
+                      <td>
+                        {{sprint.value}}
+                      </td>
+
+                      <td>
+                        {{sprint.dateStart}}
+                      </td>
+                      <td>
+                        {{sprint.dateEnd}}
+                      </td>
+                      <td>
+                        {{sprint.priority}}
+                      </td>
+                      <td>
+                        {{sprint.status}}
+                      </td>
+        <td style="text-align:center">
+
+
+          <i (click)="deletesprint(sprint._id)" class="nc-icon nc-basket"></i>
+        </td>
+                    </tr>
+
+                  </tbody>
+                </table>
+            </div>
+            </div>
+          </div>
+
+
+
+
+
+
+
+    </div>
+
+
+  </div>
+  </div>
+  </div>
+  </div>
+
+
+
+
+
 
 
 

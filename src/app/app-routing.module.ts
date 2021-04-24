@@ -13,6 +13,8 @@ import { TasksComponent } from './components/tasks/tasks.component';
 import { ProjectusersComponent } from './components/projectusers/projectusers.component';
 import { RoutesComponent } from './components/routes/routes.component';
 import { PermissionsComponent } from './components/permissions/permissions.component';
+import { PlanComponent } from './components/plan/plan.component';
+import { SprintsComponent } from './components/sprints/sprints.component';
 
 
 export const AppRoutes: Routes = [
@@ -35,6 +37,8 @@ export const AppRoutes: Routes = [
       { path: 'projectusers/:id',  component: ProjectusersComponent },
       { path: 'route',  component: RoutesComponent },
       { path: 'permissions',  component: PermissionsComponent },
+      { path: 'plan',  component: PlanComponent },
+      { path: 'sprints',  component: SprintsComponent },
 
     ]
   }

@@ -79,7 +79,6 @@ export class CompanyusersComponent implements OnInit {
       });
     });
     this.getcrole();
-    this.getrule();
   }
   update() {
    this.companyService.update(this.id, this.company)
@@ -88,18 +87,6 @@ export class CompanyusersComponent implements OnInit {
      this.router.navigate(['/companies']);
    }, error => console.log(error));
  }
- addrule(): void {
-  this.companyService.setrule(this.id, this.rule).subscribe(
-    data => {
-   console.log(data);
-   this.getrule();
-    },
-    err => {
-      this.errorMessage = err.error.message;
-      this.isFailed = true;
-    }
-  );
-}
  public geta(): void {
   this.companyService.get()
   .subscribe(
@@ -117,18 +104,6 @@ export class CompanyusersComponent implements OnInit {
     user => {
       this.users = user;
       //console.log(user);
-    },
-    error => {
-      console.log(error);
-    });
-}
-public getrule(): void {
-  this.companyService.getrule()
-  .subscribe(
-    data => {
-      this.rules = data;
-      console.log("show me rules in this company !!");
-      console.log(data);
     },
     error => {
       console.log(error);
@@ -159,15 +134,6 @@ onSub(): void {
       this.isFailed = true;
     }
   );
-}
-deleterule(id: number) {
-  this.companyService.deleterule(id)
-    .subscribe(
-      data => {
-        console.log(data);
-        this.getrule();
-      },
-      error => console.log(error));
 }
 
 

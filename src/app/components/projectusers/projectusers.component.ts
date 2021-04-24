@@ -6,6 +6,8 @@ import { UsersService } from 'app/services/users.service';
 import { FormBuilder, FormControl, FormGroup, FormArray } from '@angular/forms';
 import { ProjectService } from '../../services/project.service';
 import { data } from 'jquery';
+import { SprintsService } from 'app/services/sprints.service';
+import { DataLayer } from '@ngui/map';
 
 @Component({
   selector: 'app-projectusers',
@@ -14,12 +16,14 @@ import { data } from 'jquery';
 })
 export class ProjectusersComponent implements OnInit {
   proj: any;
+  sprints: any;
   companies: any;
   tasks: any;
   users: any;
   projects: any;
   id: number;
   project: any = {};
+  sprint: any = {};
   form: any = {};
   isFailed = false;
   Message = '';
@@ -35,7 +39,7 @@ export class ProjectusersComponent implements OnInit {
   ];
 
   // tslint:disable-next-line:max-line-length
-  constructor(private fb: FormBuilder, private route: ActivatedRoute, private router: Router, private companyService: CompanyService, private userService: UsersService, private projectservice: ProjectService) {
+  constructor(private fb: FormBuilder, private sprintservice: SprintsService,private route: ActivatedRoute, private router: Router, private companyService: CompanyService, private userService: UsersService, private projectservice: ProjectService) {
     this.fo = this.fb.group({
       idProject: [''],
       idUser: [''],
@@ -73,11 +77,6 @@ export class ProjectusersComponent implements OnInit {
       return this.fo.controls;
     }
   ngOnInit(): void {
-
-    this.geta();
-    this.getAll();
-    this.getAllc();
-    this.gettasks();
     this.route.paramMap
     .pipe(
       map((param: ParamMap) => {
@@ -93,6 +92,11 @@ export class ProjectusersComponent implements OnInit {
 
       });
     });
+    this.geta();
+    this.getAll();
+    this.getAllc();
+    this.gettasks();
+    this.getsprints();
     this.getprole();
   }
   update() {
@@ -135,22 +139,49 @@ public getAllc(): void {
     });
 }
 public gettasks(): void {
-  this.projectservice.gettasks()
+  this.projectservice.gettasks(this.id)
   .subscribe(
     data => {
       this.tasks = data;
+       console.log("tasks:");
      console.log(data);
     },
     error => {
       console.log(error);
     });
 }
+onsubsprint(): void {
+  this.sprintservice.set(this.sprint).subscribe(
+    data => {
+      console.log(data);
+      this.sprint = '';
+      this.getsprints();
+    },
+    err => {
+      this.errorMessage = err.error.message;
+      this.isFailed = true;
+    }
+  );
+}
+public getsprints(): void {
+  this.sprintservice.getsprints(this.id)
+  .subscribe(
+    dataa => {
+      this.sprints = dataa;
+      console.log("show me !!!!");
+     console.log(dataa);
+    },
+    error => {
+      console.log(error);
+    });
+}
 public getprole(): void {
-  this.projectservice.getuserrolec()
+  this.projectservice.getuserrolec(this.id)
   .subscribe(
     dataa => {
       this.proj = dataa;
-  //  console.log('show me users in this project ! ');
+  console.log('show me users in this project ! ');
+  console.log(dataa);
     },
     error => {
       console.log(error);
@@ -193,6 +224,15 @@ deletetask(id: number) {
       data => {
         console.log(data);
         this.gettasks();
+      },
+      error => console.log(error));
+}
+deletesprint(id: number) {
+  this.sprintservice.delete(id)
+    .subscribe(
+      data => {
+        console.log(data);
+        this.getsprints();
       },
       error => console.log(error));
 }

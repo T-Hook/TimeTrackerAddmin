@@ -28,6 +28,8 @@ import { RulesComponent } from './components/rules/rules.component';
 import { RoutesComponent } from './components/routes/routes.component';
 import { PermissionsComponent } from './components/permissions/permissions.component';
 import { SearchFilterPipe } from './search-filter.pipe';
+import { PlanComponent } from './components/plan/plan.component';
+import { SprintsComponent } from './components/sprints/sprints.component';
 
 @NgModule({
   declarations: [
@@ -46,7 +48,9 @@ import { SearchFilterPipe } from './search-filter.pipe';
     RulesComponent,
     RoutesComponent,
     PermissionsComponent,
-    SearchFilterPipe
+    SearchFilterPipe,
+    PlanComponent,
+    SprintsComponent
   ],
   imports: [
     CommonModule,

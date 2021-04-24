@@ -17,7 +17,6 @@ export class ProjectComponent implements OnInit {
   isIn = false;
   isFailed = false;
   errorMessage = '';
-
   constructor(private companyservice: CompanyService, private projectservice: ProjectService , private router: Router) { }
 
   ngOnInit(): void {

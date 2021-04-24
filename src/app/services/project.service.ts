@@ -25,11 +25,11 @@ export class ProjectService {
     };
     return this.http.get(AUTH_API + 'project', httpOptions);
   }
-  gettasks(): Observable<any> {
+  gettasks(id: number): Observable<any> {
     const httpOptions = {
       headers: new HttpHeaders({ 'Authorization': 'bearer ' + this.gettoken()})
     };
-    return this.http.get(AUTH_API + 'task', httpOptions);
+    return this.http.get(AUTH_API + 'task/' + id , httpOptions);
   }
   getone(id: number): Observable<any> {
     const httpOptions = {
@@ -70,11 +70,11 @@ export class ProjectService {
    acl, data
     }, httpOptions);
   }
-  getuserrolec(): Observable<Object> {
+  getuserrolec(id:number): Observable<Object> {
     const httpOptions = {
       headers: new HttpHeaders({ 'Authorization': 'bearer ' + this.gettoken()})
     };
-    return this.http.get(AUTH_API + 'project/shared' , httpOptions);
+    return this.http.get(AUTH_API + 'project/project/shared/' + id , httpOptions);
   }
   delete(id: number): Observable<any> {
     const httpOptions = {

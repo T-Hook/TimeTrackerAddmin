@@ -180,97 +180,10 @@
       </div>
 
 
-      <div class="col-md-12">
-        <div class="card ">
-          <div class="card-header ">
-      <h3> ADD rules in {{company.name}}</h3>
-          </div>
-          <div class="card-body ">
-            <form  class="form-horizontal" name="rule" (ngSubmit)="addrule()" novalidate>
-              <div class="form-group">
-                <input type="text" class="form-control" id="name" required [(ngModel)]="rule.name" name="name" placeholder="Name rule">
-              </div>
-              <div class="form-group">
-                <input type="text" class="form-control" id="type" required [(ngModel)]="rule.type" name="type" placeholder="Type">
-              </div>
-              <div class="form-group">
-                <input type="text" class="form-control" id="description" required [(ngModel)]="rule.description" name="Description" placeholder="Description">
-              </div>
-              <div class="form-group">
-                <input type="text" class="form-control" id="value" required [(ngModel)]="rule.value" name="value" placeholder="Value">
-              </div>
-              <div class="form-group">
-                <input type="text" class="form-control" id="idCompany" required [(ngModel)]="company.name" name="idCompany" value="company._idCompany" disabled>
-              </div>
-
-              <div class="form-group">
-                <div class="col-md-12 text-center">
-              <button type="submit" class="btn btn-success btn-lg"  >ADD rule</button> </div> </div>
-            </form>
-
-
-        </div>
-
-      </div>
 
 
 
-      <div class="col-md-12">
-        <div class="card ">
-          <div class="card-header ">
-            <h3> Rules set in {{company.name}}</h3>
-          </div>
-          <div class="card-body ">
 
-            <div class="table-responsive">
-              <table class="table">
-                <thead class=" text-primary">
-                  <th>
-                    Name
-                  </th>
-
-                  <th>
-                    Type
-                  </th>
-                  <th>
-                    Description
-                  </th>
-                  <th>
-                    Value
-                  </th>
-
-                  <th style="text-align:center">
-                  Remove
-                  </th>
-                </thead>
-                <tbody>
-                  <tr *ngFor="let rule of rules" >
-                    <td  >
-                      {{rule.name}}
-                    </td>
-                    <td>
-                      {{rule.type}}
-                    </td>
-                    <td>
-                      {{rule.description}}
-                    </td>
-                    <td>
-                      {{rule.value}}
-                    </td>
-                    <td style="text-align:center">
-
-                      <i (click)="deleterule(rule._id)"  class="nc-icon nc-basket"></i>
-                    </td>
-
-                  </tr>
-
-                </tbody>
-              </table>
-          </div>
-
-
-            </div></div>
-            </div>
 
 
 </div>

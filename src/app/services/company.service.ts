@@ -75,7 +75,7 @@ currentUser: any;
    acl, data
     }, httpOptions);
   }
-  setrule(id: number, rule: any): Observable<Object> {
+  setrule(rule: any): Observable<Object> {
     const httpOptions = {
       headers: new HttpHeaders({'Content-Type': 'application/json', 'Authorization': 'bearer ' + this.gettoken()})
     };
@@ -84,7 +84,7 @@ currentUser: any;
     type: rule.type,
     description : rule.description,
     value : rule.value,
-    idCompany: id
+    idCompany: rule.idCompany
     }, httpOptions);
   }
   deleterule(id: number): Observable<any> {
