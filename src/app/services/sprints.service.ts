@@ -30,7 +30,7 @@ export class SprintsService {
     };
     return this.http.get(AUTH_API + 'sprint/' + id, httpOptions);
   }
-  set(set): Observable<any> {
+  set(id:number,set): Observable<any> {
     const httpOptions = {
       headers: new HttpHeaders({'Content-Type': 'application/json', 'Authorization': 'bearer ' + this.gettoken()})
     };
@@ -45,7 +45,7 @@ export class SprintsService {
       satuts: set.status,
       idUser: set.idUser,
       idTask: set.idTask,
-      idProject: set.idProject
+      idProject: id
     }, httpOptions);
   }
 }

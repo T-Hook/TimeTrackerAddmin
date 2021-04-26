@@ -45,7 +45,7 @@
                 <div class="form-group">
                   <label>project</label>
 
- <input type="text" formControlName="idProject" class="form-control" value="{{project.name}}">
+ <input type="text" formControlName="idProject" class="form-control" value="{{project.name}}" disabled>
 
             </div>
 
@@ -189,12 +189,7 @@
  <div class="form-group">
   <label>Type</label>
  <input type="text" formControlName="type" class="form-control" ></div>
- <div class="form-group">
-  <label>project</label>
 
- <input type="text" formControlName="idProject" class="form-control" value="{{project.name}}">
-
-      </div>
 
       <div class="form-group">
         <label>User </label>
@@ -214,6 +209,12 @@
   </option>
   </select>
   </div>
+  <div class="form-group">
+    <label>project</label>
+
+   <input type="text" formControlName="idProject" class="form-control" value="{{project.name}}" disabled>
+
+        </div>
 
 
 
@@ -370,7 +371,7 @@
              </select>
              </div>
              <div class="form-group"> <span class="col-md-1 col-md-offset-2 text-center"></span>
-               <input type="text" name="idProject"  [(ngModel)]="project.name" required  value="{{project._id}}" class="form-control"></div>
+               <input type="text" name="idProject"  [(ngModel)]="project.name" required   class="form-control" disabled></div>
 
 
 

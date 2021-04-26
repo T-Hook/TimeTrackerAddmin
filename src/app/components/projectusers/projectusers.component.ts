@@ -151,7 +151,7 @@ public gettasks(): void {
     });
 }
 onsubsprint(): void {
-  this.sprintservice.set(this.sprint).subscribe(
+  this.sprintservice.set(this.id,this.sprint).subscribe(
     data => {
       console.log(data);
       this.sprint = '';
