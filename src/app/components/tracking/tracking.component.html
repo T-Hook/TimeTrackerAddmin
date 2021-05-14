@@ -1,0 +1,59 @@
+<div class='main-content bgc-grey-100'>
+  <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+      <h1 class="h2">Tracking Session List</h1>
+
+  </div>
+  <div class="container-fluid">
+      <div class="row">
+
+        <div class="col-md-4" style="padding-top: 40px" *ngFor="let tracking of trackings ; let r =index">
+
+                <div class="card">
+
+                      <h3 style="text-align: center;"> Tracking session ID {{tracking.trackingId}}</h3>
+
+                  <div>
+                    <div class="card-body">
+
+                      <p class="card-text">
+                        {{'User identity :' + (tracking.idUser.email)}}
+                 </p>
+                 <p class="card-text">
+                  {{'Filed :' + (tracking.idUser.speciality)}}
+           </p>
+
+                      <p class="card-text">
+                                          {{'Total Tracking :' + (tracking.trackingRank)}}
+                                   </p>
+                                   <p class="card-text">
+
+                                          {{'Total Pause :' + (tracking.trackingPaused)}}
+
+</p><p class="card-text">
+                                          {{'Total Key Press :' + (tracking.totalKeyPress)}}
+                                    </p><p class="card-text">
+                               {{'Total Mouse click :' + (tracking.totalMouseClick)}}
+                                   </p>
+
+                                        <p class="card-text" *ngIf="tracking?.datestart" >
+                                          {{'Time start tracking session :' + (tracking.datestart| date: ' HH:mm')}}
+                                              </p>
+                                              <p class="card-text" *ngIf="tracking?.dateend">
+                                                {{'Date end tracking session :' + (tracking.dateend | date: 'dd/MM/yyyy')}}
+                                                    </p>
+                                                    <p class="card-text" *ngIf="tracking?.time">
+                                                      {{'Tracking session duration :' + (tracking.time)}}
+                                                          </p>
+
+
+
+                      <a href="/tracking/{{tracking.trackingId}}">  <i  class="nc-icon nc-align-left-2"></i>more details </a>
+
+                  </div>
+                </div >
+              </div>
+          </div>
+      </div>
+  </div>
+
+</div>

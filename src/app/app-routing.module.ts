@@ -15,6 +15,8 @@ import { RoutesComponent } from './components/routes/routes.component';
 import { PermissionsComponent } from './components/permissions/permissions.component';
 import { PlanComponent } from './components/plan/plan.component';
 import { SprintsComponent } from './components/sprints/sprints.component';
+import { TrackingComponent } from './components/tracking/tracking.component';
+import { ShowtrackingComponent } from './components/tracking/showtracking/showtracking.component';
 
 
 export const AppRoutes: Routes = [
@@ -39,6 +41,8 @@ export const AppRoutes: Routes = [
       { path: 'permissions',  component: PermissionsComponent },
       { path: 'plan',  component: PlanComponent },
       { path: 'sprints',  component: SprintsComponent },
+      { path: 'trackingsession',  component: TrackingComponent },
+      { path: 'tracking/:id',  component: ShowtrackingComponent },
 
     ]
   }

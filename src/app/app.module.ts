@@ -30,6 +30,8 @@ import { PermissionsComponent } from './components/permissions/permissions.compo
 import { SearchFilterPipe } from './search-filter.pipe';
 import { PlanComponent } from './components/plan/plan.component';
 import { SprintsComponent } from './components/sprints/sprints.component';
+import { TrackingComponent } from './components/tracking/tracking.component';
+import { ShowtrackingComponent } from './components/tracking/showtracking/showtracking.component';
 
 @NgModule({
   declarations: [
@@ -50,7 +52,9 @@ import { SprintsComponent } from './components/sprints/sprints.component';
     PermissionsComponent,
     SearchFilterPipe,
     PlanComponent,
-    SprintsComponent
+    SprintsComponent,
+    TrackingComponent,
+    ShowtrackingComponent
   ],
   imports: [
     CommonModule,

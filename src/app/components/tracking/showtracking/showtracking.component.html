@@ -1,0 +1,204 @@
+<div class='main-content bgc-grey-100' >
+    <div *ngIf="tracking" class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+        <h1 class="h2">Details tracking session</h1>
+        <div class="btn-toolbar mb-2 mb-md-0">
+            <div class="btn-group mr-2">
+                <button class="btn btn-sm btn-primary" (click)="showPreviousTracking()">Back</button>
+                <button class="btn btn-sm btn-primary" (click)="showNextTracking()">Next</button>
+
+            </div>
+            <button class="btn btn-sm btn-danger" (click)="goToListTracking()">
+                Return
+            </button>
+            <button class="btn btn-sm btn-info">Export</button>
+
+        </div>
+    </div>
+
+
+
+
+
+
+
+    <div *ngIf="!tracking">
+<div class="border-bottom">
+      <h1 class="h2">List tracking session</h1>
+    </div>
+    <br>
+
+        <div class="masonry-sizer col-md-6"></div>
+
+        <div class="masonry-item w-100">
+
+            <div class="row gap-10">
+
+                <div class='col-md-12'>
+
+
+                </div>
+                <div class='col-md-12' *ngIf="trackings">
+
+                    <div class="masonry-item w-100">
+                        <div class="row gap-10">
+                            <div class='col-md-4' *ngFor="let tracking of trackings ; let r =index">
+                                <div class="bd bgc-white">
+                                    <div class="layers">
+
+
+                                            <div>
+                                              <img style="width: 600px;height: 300px;"
+                                                     *ngIf="tracking.screen"
+                                                     [src]="tracking.screen">
+
+                                        </div>
+
+                                        <div class="layer bdT p-20 w-100 card">
+                                            <div class="peers ai-c jc-c gapX-20 h6">
+
+                                                <div class="peer">
+                                            <span class="fsz-def fw-600 mR-10 c-grey-800">{{tracking.mouseClick}} <i
+                                                    class="fa fa-level-up c-green-500"></i></span>
+                                                    <small class="c-grey-500 fw-600">mouseClick</small>
+                                                </div>
+                                                <div class="peer fw-600">
+                                            <span class="fsz-def fw-600 mR-10 c-grey-800">{{tracking.keyPress}} <i
+                                                    class="fa fa-level-down c-red-500"></i></span>
+                                                    <small class="c-grey-500 fw-600">keyPress</small>
+                                                </div>
+                                                <div class="peer fw-600">
+                                            <span class="fsz-def fw-600 mR-10 c-grey-800">{{tracking.totalMouseClick}}
+                                                <i
+                                                        class="fa fa-level-up c-green-500"></i></span>
+                                                    <small class="c-grey-500 fw-600">total Mouse Click</small>
+                                                </div>
+                                                <div class="peer fw-600">
+                                            <span class="fsz-def fw-600 mR-10 c-grey-800">{{tracking.totalKeyPress}}
+                                                <i
+                                                        class="fa fa-level-down c-red-500"></i></span>
+                                                    <small class="c-grey-500 fw-600">total Key Press</small>
+                                                </div>
+                                                <div class="peer fw-600">
+                                                   tracking ID :{{tracking.trackingId}}
+
+
+                                                      </div>
+                                            </div>
+                                            <br>
+
+                                            <div class="peer">
+
+                                        <i  class="nc-icon nc-align-left-2"  (click)="selectTracking(tracking,r)"></i> more details
+
+                                           </div>
+                                        </div>
+
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <div *ngIf="tracking" class="masonry-item w-100">
+        <div class="row gap-10">
+            <div class='col-md-6'>
+                <div class='col-md-12' >
+                    <div class="bd bgc-white">
+                        <div class="layers">
+
+                            <div class="layer w-100 p-20">
+                              <div>
+                                <img style="width: 600px;height: 300px;"
+                                     *ngIf="tracking.screen"
+                                     [src]="tracking.screen">
+
+                              </div>
+                            </div>
+                            <div class="layer bdT p-20 w-100">
+                                <div class="peers ai-c jc-c gapX-20 h6">
+                                  <br>
+                                  <br>
+                                    <div class="peer">
+                                        Tracking ID : {{tracking.trackingId}}
+
+                                    </div>
+
+                            </div>
+
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+</div>
+
+
+            <div class='col-md-12'>
+              <br><br>
+
+              <h3>All opened windows </h3>
+                <div class="masonry-item w-100">
+                    <div class="row gap-10">
+                        <div class='col-md-4' *ngFor="let window of tracking.allOpenedWindows ; let r =index">
+
+                            <div class="bd bgc-white">
+
+
+                                <div class="layers">
+
+                                    <div class="layer w-100 p-20">
+                                        <div class="mT-30" >
+
+
+                                <img style="width: 500px;height: 250px;"
+                                                 *ngIf="window.base64"
+                                                 [src]="window.base64">
+                                        </div>
+                                    </div>
+
+
+                                                    <div class="c-grey-600">
+                                                        {{ window.name}}
+
+                                </div>
+
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+</div>
+
