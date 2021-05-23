@@ -15,7 +15,13 @@
   <textarea   name="description"  rows="5" cols="33"  [(ngModel)]="form.description" required #description="ngModel" placeholder="description" class="form-control"></textarea></div>
 
   <div class="form-group"> <span class="col-md-1 col-md-offset-2 text-center"></span>
-    <textarea   name="data"  rows="5" cols="33"  [(ngModel)]="form.data" required #data="ngModel" placeholder="DATA" class="form-control"></textarea></div>
+    <label>Date start</label>
+    <input type="date" name="datestart"  [(ngModel)]="form.datestart" required  class="form-control"></div>
+    <div class="form-group"> <span class="col-md-1 col-md-offset-2 text-center"></span>
+      <label>Date end</label>
+      <input type="date" name="dateend"  [(ngModel)]="form.dateend" required  class="form-control"></div>
+
+
     <div class="form-group">
 
 <select class="form-control" [(ngModel)]="form.idCompany" name="idCompany" class="form-control">
@@ -79,7 +85,13 @@
                     Description
                   </th>
                   <th>
-                    DATA
+                    Date start
+                  </th>
+                  <th>
+                    Date end
+                  </th>
+                  <th>
+                    Status
                   </th>
                   <th >
                     Company
@@ -103,7 +115,13 @@
 
                     </td>
                     <td>
-                      {{ project.data}}
+                      {{ project.datestart}}
+                    </td >
+                    <td>
+                      {{ project.dateend}}
+                    </td >
+                    <td>
+                      {{ project.status}}
                     </td >
                     <td>
                       {{ project.idCompany.name}}

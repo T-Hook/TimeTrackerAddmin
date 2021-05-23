@@ -32,6 +32,9 @@
   <div class="form-group"> <span class="col-md-1 col-md-offset-2 text-center"></span>
     <input  type="text" name="website"  [(ngModel)]="form.website" required #phone="ngModel" placeholder="Website" class="form-control"></div>
 
+    <div class="form-group"> <span class="col-md-1 col-md-offset-2 text-center"></span>
+      <input  type="text" name="email"  [(ngModel)]="form.email" required #phone="ngModel" placeholder="Email" class="form-control"></div>
+
 
 
 <div class="form-group">
@@ -71,6 +74,9 @@
                 <th>
                   website
                 </th>
+                <th>
+                  Email
+                </th>
                 <th style="text-align:center">
                 details
                 </th>
@@ -96,6 +102,9 @@
                   </td>
                   <td>
                     {{ company.website}}
+                  </td>
+                  <td>
+                    {{ company.email}}
                   </td>
                   <td style="text-align:center">
                     <i (click)="details(company._id)"  class="nc-icon nc-tap-01"></i>

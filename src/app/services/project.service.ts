@@ -44,7 +44,9 @@ export class ProjectService {
     return this.http.put(AUTH_API + 'project/' + id , {
       name: set.name,
       description: set.description,
-      data: set.data
+      datestart : set.datestart,
+      dateend: set.dateend,
+      status : set.status
     }, httpOptions);
   }
   set(set): Observable<any> {
@@ -54,7 +56,8 @@ export class ProjectService {
     return this.http.post(AUTH_API + 'project', {
       name: set.name,
       description: set.description,
-      data: set.data,
+      datestart: set.datestart,
+      dateend: set.dateend,
       idCompany : set.idCompany
     }, httpOptions);
   }
@@ -67,7 +70,7 @@ export class ProjectService {
     return this.http.post(AUTH_API + 'project/shared' , {
     idProject : id,
     idUser,
-   acl, data
+   acl
     }, httpOptions);
   }
   getuserrolec(id:number): Observable<Object> {
@@ -89,7 +92,7 @@ export class ProjectService {
     return this.http.delete(AUTH_API + 'task/' + id , httpOptions);
   }
   settask(id: number , ft: any): Observable<Object> {
-    const {name, description, type, date, idUser, idProject, idCompany} = ft;
+    const {name, description, type, datestart, idUser, dateend, status, idProject, idCompany} = ft;
     const httpOptions = {
       headers: new HttpHeaders({'Content-Type': 'application/json', 'Authorization': 'bearer ' + this.gettoken()})
     };
@@ -98,7 +101,10 @@ export class ProjectService {
       name,
       description,
       type,
-      date : this.todayDate,
+      datestart: datestart,
+      dateend: dateend,
+      status,
+      state: 'unfinished',
       idUser,
       idProject : id,
       idCompany

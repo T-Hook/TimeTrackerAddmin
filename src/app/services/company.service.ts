@@ -47,7 +47,8 @@ currentUser: any;
       region: set.region,
       description: set.description,
       phone: set.phone,
-      website: set.website
+      website: set.website,
+      email: set.email
     }, httpOptions);
   }
   set(set): Observable<any> {
@@ -60,7 +61,8 @@ currentUser: any;
       region: set.region,
       description: set.description,
       phone: set.phone,
-      website: set.website
+      website: set.website,
+      email: set.email
     }, httpOptions);
   }
   setuserrole(id: number, fo: any): Observable<Object> {

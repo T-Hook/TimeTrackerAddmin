@@ -19,6 +19,7 @@ export class ProjectusersComponent implements OnInit {
   sprints: any;
   companies: any;
   tasks: any;
+  tasksfilter: any;
   users: any;
   projects: any;
   id: number;
@@ -39,7 +40,7 @@ export class ProjectusersComponent implements OnInit {
   ];
 
   // tslint:disable-next-line:max-line-length
-  constructor(private fb: FormBuilder, private sprintservice: SprintsService,private route: ActivatedRoute, private router: Router, private companyService: CompanyService, private userService: UsersService, private projectservice: ProjectService) {
+  constructor(private fb: FormBuilder, private sprintservice: SprintsService, private route: ActivatedRoute, private router: Router, private companyService: CompanyService, private userService: UsersService, private projectservice: ProjectService) {
     this.fo = this.fb.group({
       idProject: [''],
       idUser: [''],
@@ -50,7 +51,10 @@ export class ProjectusersComponent implements OnInit {
       name: [''],
       description: [''],
       type: [''],
-      date: [''],
+      datestart: [''],
+      dateend: [''],
+      status: [''],
+      state: [''],
       idUser: [''],
       idProject: [''],
       idCompany: ['']
@@ -98,6 +102,7 @@ export class ProjectusersComponent implements OnInit {
     this.gettasks();
     this.getsprints();
     this.getprole();
+    this.gettasksfilter();
   }
   update() {
    this.projectservice.update(this.id, this.project)
@@ -150,8 +155,36 @@ public gettasks(): void {
       console.log(error);
     });
 }
+public removeDuplicates(originalArray, prop) {
+  let newArray = [];
+  let lookupObject  = {};
+
+  for (const i in originalArray) {
+     lookupObject[originalArray[i][prop]] = originalArray[i];
+  }
+
+  for (var i in lookupObject) {
+      newArray.push(lookupObject[i]);
+  }
+   return newArray;
+}
+public gettasksfilter(): void {
+  this.projectservice.gettasks(this.id)
+  .subscribe(
+    // tslint:disable-next-line:no-shadowed-variable
+    data => {
+// tslint:disable-next-line:prefer-const
+var uniqueArray = this.removeDuplicates(data, '_id');
+      this.tasksfilter = uniqueArray;
+       console.log('tasksfilter:');
+     console.log(data);
+    },
+    error => {
+      console.log(error);
+    });
+}
 onsubsprint(): void {
-  this.sprintservice.set(this.id,this.sprint).subscribe(
+  this.sprintservice.set(this.id, this.sprint).subscribe(
     data => {
       console.log(data);
       this.sprint = '';
@@ -168,7 +201,7 @@ public getsprints(): void {
   .subscribe(
     dataa => {
       this.sprints = dataa;
-      console.log("show me !!!!");
+      console.log('show me !!!!');
      console.log(dataa);
     },
     error => {
@@ -211,6 +244,7 @@ onSubtask(): void {
    console.log(this.ft.value);
    this.ft.reset();
    this.gettasks();
+   this.gettasksfilter();
     },
     err => {
       this.errorMessage = err.error.message;
@@ -224,6 +258,7 @@ deletetask(id: number) {
       data => {
         console.log(data);
         this.gettasks();
+        this.gettasksfilter();
       },
       error => console.log(error));
 }
