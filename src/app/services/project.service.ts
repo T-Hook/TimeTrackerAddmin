@@ -31,6 +31,12 @@ export class ProjectService {
     };
     return this.http.get(AUTH_API + 'task/' + id , httpOptions);
   }
+  gett(): Observable<any> {
+    const httpOptions = {
+      headers: new HttpHeaders({ 'Authorization': 'bearer ' + this.gettoken()})
+    };
+    return this.http.get(AUTH_API + 'task', httpOptions);
+  }
   getone(id: number): Observable<any> {
     const httpOptions = {
       headers: new HttpHeaders({ 'Authorization': 'bearer ' + this.gettoken()})

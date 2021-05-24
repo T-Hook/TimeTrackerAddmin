@@ -11,7 +11,7 @@
           <div class="col-7 col-md-8">
             <div class="numbers">
               <p class="card-category">Users</p>
-              <p class="card-title"> number
+              <p class="card-title"> {{numberu}}
                 <p>
             </div>
           </div>
@@ -37,7 +37,7 @@
           <div class="col-7 col-md-8">
             <div class="numbers">
               <p class="card-category">Projects</p>
-              <p class="card-title"> number
+              <p class="card-title"> {{numberp}}
                 <p>
             </div>
           </div>
@@ -63,7 +63,7 @@
           <div class="col-7 col-md-8">
             <div class="numbers">
               <p class="card-category">Tasks</p>
-              <p class="card-title"> number
+              <p class="card-title"> {{numbert}}
                 <p>
             </div>
           </div>
@@ -114,7 +114,7 @@
     </div>
     <div class="card-body">
   <div *ngIf="charts">
-    <canvas id="canvas2" width="300" height="90">{{ charts }}</canvas>
+    <canvas id="canvas2" width="200" height="60">{{ charts }}</canvas>
   </div>
   </div>
   <div class="card-footer ">
@@ -129,22 +129,18 @@
 <div class="col-sm-6  mx-auto">
   <div class="card">
   <div class="card-header ">
-    <h5 class="card-title">Tasks Statistics</h5>
+    <h5 class="card-title">Users per Speciality</h5>
     <p class="card-category">Last Update</p>
   </div>
   <div class="card-body">
-<canvas id="myChart3" width="300" height="90"></canvas>
+    <div *ngIf="charts1">
+      <canvas id="canvas3" width="200" height="60">{{ charts1 }}</canvas>
+    </div>
 </div>
 <div class="card-footer ">
-  <div class="legend">
-    <i class="fa fa-circle text-primary"></i> Opened
-    <i class="fa fa-circle text-warning"></i> Read
-    <i class="fa fa-circle text-danger"></i> Deleted
-    <i class="fa fa-circle text-gray"></i> Unopened
-  </div>
   <hr>
   <div class="stats">
-    <i class="fa fa-calendar"></i> Number of emails sent
+    <i class="fa fa-window-restore"></i> Number of users per speciality
   </div>
 </div>
 </div>
@@ -165,7 +161,7 @@
     </div>
     <div class="card-body">
       <div *ngIf="chart">
-        <canvas id="canvas" width="300" height="70">{{ chart }}</canvas>
+        <canvas id="canvas" width="300" height="45" class="chart chart-horizontalBar">{{ chart }}</canvas>
       </div>
 </div>
 <div class="card-footer ">
