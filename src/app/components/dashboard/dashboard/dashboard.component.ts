@@ -137,10 +137,15 @@ public removeDuplicates(originalArray, prop) {
           console.log(result2);
           this.charts = new Chart('canvas2', {
             type: 'pie',
+            labelKey : 'label',
             data: {
+              showInLegend: true,
+              toolTipContent: 'name',
+              indexLabel: 'name',
+              dataPoints: state,
               labels: state,
               datasets: [{
-                  label: 'Project Status',
+                  label: state,
                   data: result2,
                   backgroundColor: [
                     'rgba(75, 192, 150, 0.2)',
@@ -156,6 +161,24 @@ public removeDuplicates(originalArray, prop) {
               }]
           },
           options: {
+            plotOptions: {
+              pie: {
+                donut: {
+                  labels: {
+                    show: true,
+                  }
+                }
+              }
+            },
+            plugins: {
+            datalabels: {
+                formatter: function (value, context) {
+                    return context.chart.data.labels[
+                        context.dataIndex
+                    ];
+                },
+            },
+        },
         legend: {
             display: true
         },
