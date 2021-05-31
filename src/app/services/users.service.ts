@@ -26,6 +26,12 @@ export class UsersService {
     };
     return this.http.get(AUTH_API + 'api/users', httpOptions);
   }
+    getspec(): Observable<any> {
+    const httpOptions = {
+      headers: new HttpHeaders({ 'Authorization': 'bearer ' + this.gettoken()})
+    };
+    return this.http.get(AUTH_API + 'api/users/get', httpOptions);
+  }
   getnotif(): Observable<any> {
     const httpOptions = {
       headers: new HttpHeaders({ 'Authorization': 'bearer ' + this.gettoken()})

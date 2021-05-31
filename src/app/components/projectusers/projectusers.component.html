@@ -7,18 +7,23 @@
       <div class="card-body ">
         <form  class="form-horizontal" name="company" (ngSubmit)="update()" novalidate>
           <div class="form-group">
+            <label>Project name</label>
             <input type="text" class="form-control" id="name" required [(ngModel)]="project.name" name="name">
           </div>
           <div class="form-group">
+            <label>Project description</label>
             <input type="text" class="form-control" id="description" required [(ngModel)]="project.description" name="description">
           </div>
           <div class="form-group">
+            <label>Date start</label>
             <input type="date" class="form-control" id="datestart" required [(ngModel)]="project.datestart" name="datestart">
           </div>
           <div class="form-group">
+            <label>Date end</label>
             <input type="date" class="form-control" id="dateend" required [(ngModel)]="project.dateend" name="dateend">
           </div>
           <div class="form-group">
+            <label>Status</label>
             <input type="text" class="form-control" id="status" required [(ngModel)]="project.status" name="status">
           </div>
 
@@ -126,9 +131,7 @@
                   <th>
                     Date end
                   </th>
-                  <th>
-                    Status
-                  </th>
+
 
                   <th style="text-align:center">
                     Delete
@@ -154,10 +157,6 @@
                     </td>
                     <td>
                       {{ p.idProject.dateend}}
-
-                    </td>
-                    <td>
-                      {{ p.idProject.status}}
 
                     </td>
 
@@ -308,7 +307,18 @@
                       {{ task.dateend }}
                     </td >
                     <td>
-                      {{ task.state}}
+                      <tr>
+                        <td   *ngIf="task.state==='New'" >
+                          <img src="./assets/img/New.PNG" width="35"  class="center"/>
+                        </td>
+                        <td   *ngIf="task.state==='Finished'">
+                          <img src="./assets/img/Finished.PNG" width="35"  class="center"/>
+                        </td>
+                        <td   *ngIf="task.state==='In progress'" >
+
+                          <img src="./assets/img/Inprogress.PNG" width="35"  class="center"/>
+                        </td>
+                      </tr>
                     </td >
 
 
@@ -389,7 +399,18 @@
                       {{task.dateend }}
                     </td>
                     <td>
-                      {{task.status }}
+                      <tr>
+                        <td   *ngIf="task.status==='New'" >
+                          <img src="./assets/img/New.PNG" width="35"  class="center"/>
+                        </td>
+                        <td   *ngIf="task.status==='Finished'">
+                          <img src="./assets/img/Finished.PNG" width="35"  class="center"/>
+                        </td>
+                        <td   *ngIf="task.status==='In progress'" >
+
+                          <img src="./assets/img/Inprogress.PNG" width="35"  class="center"/>
+                        </td>
+                      </tr>
                     </td >
                     <td>
                       {{ task.idProject.name}}

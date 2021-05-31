@@ -121,7 +121,19 @@
                       {{ project.dateend}}
                     </td >
                     <td>
-                      {{ project.status}}
+
+                    <tr>
+                      <td   *ngIf="project.status==='New'" >
+                        <img src="./assets/img/New.PNG" width="35"  class="center"/>
+                      </td>
+                      <td   *ngIf="project.status==='Finished'">
+                        <img src="./assets/img/Finished.PNG" width="35"  class="center"/>
+                      </td>
+                      <td   *ngIf="project.status==='In progress'" >
+
+                        <img src="./assets/img/Inprogress.PNG" width="35"  class="center"/>
+                      </td>
+                    </tr>
                     </td >
                     <td>
                       {{ project.idCompany.name}}

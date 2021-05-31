@@ -32,7 +32,7 @@ import { PlanComponent } from './components/plan/plan.component';
 import { SprintsComponent } from './components/sprints/sprints.component';
 import { TrackingComponent } from './components/tracking/tracking.component';
 import { ShowtrackingComponent } from './components/tracking/showtracking/showtracking.component';
-
+import { HighchartsChartModule } from 'highcharts-angular';
 @NgModule({
   declarations: [
     AppComponent,
@@ -69,7 +69,8 @@ import { ShowtrackingComponent } from './components/tracking/showtracking/showtr
     ToastrModule.forRoot(),
     FooterModule,
     HttpClientModule,
-    FixedPluginModule
+    FixedPluginModule,
+    HighchartsChartModule
   ], providers: [authInterceptorProviders],
   bootstrap: [AppComponent]
 })

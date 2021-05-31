@@ -25,6 +25,12 @@ export class ProjectService {
     };
     return this.http.get(AUTH_API + 'project', httpOptions);
   }
+  getstat(): Observable<any> {
+    const httpOptions = {
+      headers: new HttpHeaders({ 'Authorization': 'bearer ' + this.gettoken()})
+    };
+    return this.http.get(AUTH_API + 'project/get', httpOptions);
+  }
   gettasks(id: number): Observable<any> {
     const httpOptions = {
       headers: new HttpHeaders({ 'Authorization': 'bearer ' + this.gettoken()})

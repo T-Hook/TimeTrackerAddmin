@@ -1,3 +1,7 @@
+<head>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.4/dist/Chart.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@0.7.0"></script>
+</head>
 <div class="row">
   <div class="col-lg-3 col-md-6 col-sm-6">
     <div class="card card-stats">
@@ -109,13 +113,11 @@
   <div class="col-sm-6  mx-auto">
     <div class="card">
     <div class="card-header ">
-      <h5 class="card-title">Projects Statistics</h5>
       <p class="card-category">Last Update</p>
     </div>
     <div class="card-body">
-  <div *ngIf="charts">
-    <canvas id="canvas2" width="200" height="60">{{ charts }}</canvas>
-  </div>
+
+      <div id="canvas2"  width="200" height="60"></div>
   </div>
   <div class="card-footer ">
 
@@ -129,13 +131,12 @@
 <div class="col-sm-6  mx-auto">
   <div class="card">
   <div class="card-header ">
-    <h5 class="card-title">Users per Speciality</h5>
     <p class="card-category">Last Update</p>
   </div>
   <div class="card-body">
-    <div *ngIf="charts1">
-      <canvas id="canvas3" width="200" height="60">{{ charts1 }}</canvas>
-    </div>
+
+
+        <div id="container"  width="200" height="60"></div>
 </div>
 <div class="card-footer ">
   <hr>
@@ -156,13 +157,11 @@
 <div class="col-sm-11 mx-auto" >
   <div class="card">
     <div class="card-header ">
-      <h5 class="card-title">Tracking hour Statistics</h5>
       <p class="card-category">Last Update</p>
     </div>
     <div class="card-body">
-      <div *ngIf="chart">
-        <canvas id="canvas" width="300" height="45" class="chart chart-horizontalBar">{{ chart }}</canvas>
-      </div>
+
+      <div id="c" width="300" height="45"></div>
 </div>
 <div class="card-footer ">
 
@@ -175,3 +174,6 @@
 </div>
 
 </div>
+
+
+

@@ -32,6 +32,12 @@ export class TrackingService {
     };
     return this.http.get(AUTH_API + 'tracking', httpOptions);
   }
+  getstat(): Observable<any> {
+    const httpOptions = {
+      headers: new HttpHeaders({ 'Authorization': 'bearer ' + this.gettoken()})
+    };
+    return this.http.get(AUTH_API + 'tracking/get', httpOptions);
+  }
 
   listByTrackingId(id,parmas) {
     const httpOptions = {
